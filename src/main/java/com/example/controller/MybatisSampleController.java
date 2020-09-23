@@ -15,9 +15,14 @@ import com.example.service.UsersService;
 @RestController
 public class MybatisSampleController {
 	
-//	@Autowired
-//	UsersService userService;
+	@Autowired
+	UsersService usersService;
 	
+	/**
+	 * ユーザー情報の書き込み
+	 * @param request
+	 * @return DBへの書き込み結果
+	 */
 	@RequestMapping(value="/post")
 	public ResultResponse registUserInfo(@RequestBody UserInfoRequest request) {
 		
@@ -32,16 +37,17 @@ public class MybatisSampleController {
 		entity.setEmail(request.getEmail());
 		
 		//データベースへの書き込み処理
-//		try {
-//			userService.insertUser(entity);
-//			response.setResultMessage("DB書き込み成功");
-//		}catch(Exception ex) {
-//			System.out.println(ex);
-//			response.setResultMessage("DB書き込み失敗");
-//		}
+		try {
+			usersService.insertUser(entity);
+			response.setResultMessage("DB書き込み成功");
+			response.setId(id);
+		}catch(Exception ex) {
+			System.out.println(ex);
+			response.setResultMessage("DB書き込み失敗");
+			response.setId("null");
+		}
 		
 		//リクエスト
-		response.setId(id);
 		response.setName(request.getName());
 		response.setEmail(request.getEmail());
 		

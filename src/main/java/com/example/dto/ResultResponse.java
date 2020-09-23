@@ -17,7 +17,7 @@ public class ResultResponse {
 	private String email;
 	
 	/**
-	 * DB登録の結果に関するメッセージ
+	 * 結果に関するメッセージ
 	 */
 	private String resultMessage;
 	
